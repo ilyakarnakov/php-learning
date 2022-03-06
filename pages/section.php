@@ -5,7 +5,6 @@
 	$section['id'] = $params[1];
 	$page = $params[2];
 
-
 	$sectionsQuery = '
 		SELECT
 			section.id AS id,
@@ -70,7 +69,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?=$section['title']?> - <?=$page?> стр.</title>
+	<title><?=htmlspecialchars($section['title'])?> - <?=$page?> стр.</title>
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -87,7 +86,7 @@
 			<div class='sections-links'>
 				<? foreach($sections AS $item){?>
 					<a class='sections-links__item' href='/section/<?=$item['id']?>/1'>
-						<?=$item['title']?>
+						<?=htmlspecialchars($item['title'])?>
 					</a>
 				<?}?>
 			</div>
@@ -96,19 +95,19 @@
 			<a class='back-next-link' href='/'>
 				<span class="material-icons back-next-link__icon">arrow_back</span>К выбору разделов
 			</a>
-			<h2 class='content__title'><?=$section['title']?></h2>
+			<h2 class='content__title'><?=htmlspecialchars($section['title'])?></h2>
 			<div class='about-section'>
-				Товаров в разделе: <?=$section['count']?><br>
+				Товаров в разделе: <?=htmlspecialchars($section['count'])?><br>
 				Товаров на странице: <?=$limit?><br>
 			</div>
 			<div class='products-item-wrap'>
 
 				<?foreach($products AS $product){?>
 						
-				<a class='product-item' href='/section/<?=$section['id']?>/<?=$page?>/product/<?=$product['id']?>'>
-					<img class='product-item__img' src='<?=$product['default_img']?>'>
-					<div class='product-item__name'><?=$product['name']?></div>
-					<div class='product-item__price'><?=$product['price']?> &#x20bd;</div>	
+				<a class='product-item' href='/section/<?=htmlspecialchars($section['id'])?>/<?=$page?>/product/<?=htmlspecialchars($product['id'])?>'>
+					<img class='product-item__img' src='<?=htmlspecialchars($product['default_img'])?>'>
+					<div class='product-item__name'><?=htmlspecialchars($product['name'])?></div>
+					<div class='product-item__price'><?=htmlspecialchars($product['price'])?> &#x20bd;</div>	
 				</a>
 						
 				<?}?>
@@ -120,21 +119,21 @@
 			<div class='content__back-next'>
 				<?if ($page == 1){?>
 
-				<a class='back-next-link' href='/section/<?=$section['id']?>/<?=$page + 1?>'>
+				<a class='back-next-link' href='/section/<?=htmlspecialchars($section['id'])?>/<?=$page + 1?>'>
 					Вперед<span class='material-icons back-next-link__icon'>arrow_forward</span>
 				</a>
 
 				<?} if ($page > 1 and $page < $numPage){?>
 
-				<a class='back-next-link' href='/section/<?=$section['id']?>/<?=$page - 1?>'>
+				<a class='back-next-link' href='/section/<?=htmlspecialchars($section['id'])?>/<?=$page - 1?>'>
 					<span class='material-icons back-next-link__icon'>arrow_back</span>Назад
 				</a>
-				<a class='back-next-link' href='/section/<?=$section['id']?>/<?=$page + 1?>'>
+				<a class='back-next-link' href='/section/<?=htmlspecialchars($section['id'])?>/<?=$page + 1?>'>
 					Вперед<span class='material-icons back-next-link__icon'>arrow_forward</span>
 				</a>
 
 				<?}	if ($page == $numPage){?>
-				<a class='back-next-link' href='/section/<?=$section['id']?>/<?=$page - 1?>'>
+				<a class='back-next-link' href='/section/<?=htmlspecialchars($section['id'])?>/<?=$page - 1?>'>
 					<span class='material-icons back-next-link__icon'>arrow_back</span>Назад
 				</a>
 				<?}?>

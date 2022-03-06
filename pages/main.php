@@ -49,18 +49,22 @@
 			</div>
 			<div class='sections-item-wrap content__sections-item-wrap'>
 				<?foreach($sections as $item){
+
+				$bind = [
+					['section',$item['id'], PDO::PARAM_STR]
+				];
 				$query = '
 					SELECT picture.file_path FROM product_section
 					JOIN product_picture ON product_section.id_product = product_picture.id_product
 					JOIN picture ON product_picture.id_picture = picture.id
-					WHERE product_section.id_section = '.$item['id'].' LIMIT 1';
+					WHERE product_section.id_section = :section LIMIT 1';
 
-				$picture = DataBase::dbSelect($query);?>
+				$picture = DataBase::dbSelect($query, $bind);?>
 				
-				<a class='section-item' href="/section/<?=$item['id']?>/1">
-					<img class='section-item__img' src='<?=$picture[0]['file_path']?>'>
+				<a class='section-item' href="/section/<?=htmlspecialchars($item['id'])?>/1">
+					<img class='section-item__img' src='<?=htmlspecialchars($picture[0]['file_path'])?>'>
 					<div class='section-item__title'>
-						<?=$item['title']?> (<?=$item['count']?>)
+						<?=htmlspecialchars($item['title'])?> (<?=htmlspecialchars($item['count'])?>)
 					</div>
 				</a>
 

@@ -86,7 +86,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?=$product['name']?></title>
+	<title><?=htmlspecialchars($product['name'])?></title>
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -107,14 +107,14 @@
 			<a href='/' class='logo'>SHOP</a>
 			<div class='sections-links'>
 				<? foreach($sections AS $sec){?>
-					<a class='sections-links__item' href='/section/<?=$sec['id']?>/1'>
-						<?=$sec['title']?>
+					<a class='sections-links__item' href='/section/<?=htmlspecialchars($sec['id'])?>/1'>
+						<?=htmlspecialchars($sec['title'])?>
 					</a>
 				<?}?>
 			</div>
 		</header>
 		<div class='content main__content'>
-			<a class='back-next-link' href='/section/<?=$section['id']?>/<?=$page?>'>
+			<a class='back-next-link' href='/section/<?=htmlspecialchars($section['id'])?>/<?=$page?>'>
 				<span class="material-icons back-next-link__icon">arrow_back</span>К разделу
 			</a>
 			<div class='product-card content__product-card'>
@@ -124,7 +124,7 @@
 							<?$defaultImg = '';
 							foreach($pictures AS $picture){?>
 
-								<img class="small-image" src="<?=$picture['file_path']?>">
+								<img class="small-image" src="<?=htmlspecialchars($picture['file_path'])?>">
 					
 								<?if($picture['is_default'] == 1){
 								$defaultImg = $picture['file_path'];
@@ -133,16 +133,16 @@
 						</div>
 					</div>
 					<div class='main-image-wrap images-wrap__main-image-wrap'>
-						<img class="main-image" src="<?=$defaultImg?>">
+						<img class="main-image" src="<?=htmlspecialchars($defaultImg)?>">
 					</div>
 				</div>
 				<div class='info-product product-card__info-product'>
-					<h1><?=$product['name']?></h1>
+					<h1><?=htmlspecialchars($product['name'])?></h1>
 
 					<div class="links-wrap">
 						<?foreach($sectionsProduct AS $section){
 							?>
-								<a class="links-wrap__link" href="/section/<?=$section['id']?>/1"><?=$section['title']?></a>
+								<a class="links-wrap__link" href="/section/<?=htmlspecialchars($section['id'])?>/1"><?=htmlspecialchars($section['title'])?></a>
 							<?
 						}
 						?>
@@ -150,13 +150,13 @@
 
 					<div class="prices-wrap info-product__prices-wrap">
 						<span class="price_original">
-							<?=$product['price_original']?>
+							<?=htmlspecialchars($product['price_original'])?>
 						</span>
 						<span class="price">
-							<?=$product['price']?> &#x20bd;
+							<?=htmlspecialchars($product['price'])?> &#x20bd;
 						</span>
 						<span class="price_promo">
-							<?=$product['price_promo']?> &#x20bd;
+							<?=htmlspecialchars($product['price_promo'])?> &#x20bd;
 						</span>
 						<span class="product-card__price_note">
 							- с промокодом
@@ -191,7 +191,7 @@
 					</div>
 
 					<div class="info-product__description">
-						<?=$product['description']?>
+						<?=htmlspecialchars($product['description'])?>
 					</div>
 
 					<div class="share-wrap info-product__share-wrap">
